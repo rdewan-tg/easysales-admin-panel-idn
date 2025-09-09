@@ -1,0 +1,140 @@
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-calendars/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-notifications/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-grids/styles/material.css";
+
+.gallery-item {
+  margin: 5px;
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  /* Default grid for smaller screens */
+  gap: 8px;
+  /* Add spacing between items */
+}
+
+.lightGallery-captions {
+  h4 {
+    transform: translate3d(60px, 0, 0px);
+  }
+
+  p {
+    transform: translate3d(-60px, 0, 0px);
+  }
+
+  h4,
+  p {
+    opacity: 0;
+  }
+}
+
+.lg-current {
+  .lightGallery-captions {
+    h4,
+    p {
+      transform: translate3d(0, 0, 0px);
+    }
+
+    h4,
+    p {
+      opacity: 1;
+    }
+  }
+}
+
+.lg-slide-progress {
+  .lightGallery-captions {
+    h4 {
+      transform: translate3d(-60px, 0, 0px);
+    }
+
+    p {
+      transform: translate3d(60px, 0, 0px);
+    }
+
+    h4,
+    p {
+      opacity: 0;
+    }
+  }
+}
+
+.lightGallery-captions {
+  h4,
+  p {
+    transition:
+      transform 0.4s ease-in-out,
+      opacity 0.4s ease-in;
+  }
+}
+
+.lg-current {
+  .lightGallery-captions {
+    h4,
+    p {
+      transition-delay: 500ms;
+    }
+  }
+
+  &.lg-slide-progress {
+    .lightGallery-captions {
+      h4,
+      p {
+        transition-delay: 0ms;
+      }
+    }
+  }
+}
+
+.lg-backdrop,
+.lg-outer {
+  z-index: 1301 !important;
+  /* Higher than MUI Drawer (default 1200) */
+}
+
+.lg-toolbar,
+.lg-prev,
+.lg-next {
+  z-index: 1302 !important;
+  /* Ensure navigation buttons are visible */
+}
+
+/* Syncfusion Grid */
+.e-grid .e-toolbar-items {
+  background-color: #deecf9;
+}
+.e-grid .e-toolbar .e-btn {
+  background-color: #deecf9;
+}
+
+/* For medium devices (e.g., tablets) */
+@media (min-width: 600px) {
+  .gallery-container {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns on medium screens */
+  }
+}
+
+/* For large devices (e.g., laptops/desktops) */
+@media (min-width: 900px) {
+  .gallery-container {
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns on large screens */
+  }
+}
+
+/* For extra-large devices (e.g., large desktops) */
+@media (min-width: 1200px) {
+  .gallery-container {
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columns on extra-large screens */
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "unwantedRecommendations": [
+    // Add the ID of the extension causing the MCP schema issue here
+  ]
+}
