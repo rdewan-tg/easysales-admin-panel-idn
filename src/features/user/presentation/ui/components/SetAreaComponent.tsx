@@ -9,14 +9,10 @@ import {
 } from "@mui/material";
 import { useEffect } from "react";
 import { useUserStore } from "../..";
-import {
-  NotificationSnackbar,   
-} from "@/common/components";
+import { NotificationSnackbar } from "@/common/components";
 import { useAreaStore } from "@/features/area/presentation";
 
 const SetAreaComponent = () => {
- 
-
   const areas = useAreaStore((state) => state.areas);
   const selectedArea = useAreaStore((state) => state.selectedArea);
   const setUserArea = useAreaStore.use.setUserArea();
@@ -28,22 +24,16 @@ const SetAreaComponent = () => {
 
   useEffect(() => {
     const fetchAreas = async () => {
-      if (areas.length === 0) {
-        // call only if areas are empty
-        await getAreas();
-      }
+      await getAreas();
     };
 
     fetchAreas();
   });
 
-
-
   const handleAreaChange = (event: SelectChangeEvent) => {
     const newArea = event.target.value;
     setUserArea(Number(user?.id), Number(newArea));
   };
-
 
   return (
     <Box>
@@ -74,7 +64,7 @@ const SetAreaComponent = () => {
       </FormControl>
 
       {/* Snackbar component  when area is added / removed from user */}
-      
+
       <NotificationSnackbar
         isSuccess={!!isAreaAdded}
         isDeleted={!!isAreaDeleted}
