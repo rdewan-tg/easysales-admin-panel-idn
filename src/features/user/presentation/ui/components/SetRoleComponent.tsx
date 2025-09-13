@@ -34,7 +34,7 @@ const SetRoleComponent = () => {
     };
 
     fetchRoles();
-  });
+  }, []);
 
   // observe role state and display snackbar
   useEffect(() => {

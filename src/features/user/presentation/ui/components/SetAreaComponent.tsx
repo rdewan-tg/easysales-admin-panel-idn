@@ -24,11 +24,13 @@ const SetAreaComponent = () => {
 
   useEffect(() => {
     const fetchAreas = async () => {
-      await getAreas();
+      if (areas.length === 0) {
+        await getAreas();
+      }
     };
 
     fetchAreas();
-  });
+  }, [areas, getAreas]);
 
   const handleAreaChange = (event: SelectChangeEvent) => {
     const newArea = event.target.value;
