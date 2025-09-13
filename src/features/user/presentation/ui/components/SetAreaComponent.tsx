@@ -30,7 +30,7 @@ const SetAreaComponent = () => {
     };
 
     fetchAreas();
-  }, []);
+  }, [areas, getAreas]);
 
   const handleAreaChange = (event: SelectChangeEvent) => {
     const newArea = event.target.value;
