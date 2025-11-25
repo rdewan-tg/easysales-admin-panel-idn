@@ -54,6 +54,7 @@ export const permissions: Record<Role["name"], string[]> = {
     "item",
     "price",
     "area",
+    "site-visit",
   ],
   supervisor: [
     "dashboard",
