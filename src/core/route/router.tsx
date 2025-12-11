@@ -28,7 +28,7 @@ import PhotoGalleryScreen from "@/features/photo/presentation/ui/PhotoGalleryScr
 import PhotoScreen from "@/features/photo/presentation/ui/PhotoScreen";
 import CustomerScreen from "@/features/master-data/customer/presentation/ui/CustomerScreen";
 import SalesCustomerScreen from "@/features/master-data/customer/presentation/ui/SalesCustomerScreen";
-import MerchandiserCustomerScreen from "@/features/master-data/merchandiser-customer/presentation/ui/MerchandiserCustomerScreen";
+import MerchandiserCustomerScreen from "@/features/master-data/merchandiser-customer/ui/MerchandiserCustomerScreen";
 import ItemScreen from "@/features/master-data/item/presentation/ui/ItemScreen";
 import ItemListScreen from "@/features/master-data/item/presentation/ui/ItemListScreen";
 import PriceScreen from "@/features/master-data/price/presentation/ui/PriceScreen";
@@ -49,8 +49,15 @@ import SalesHeaderListScreen from "@/features/order/presentation/ui/SalesHeaderL
 import SalesHeaderScreen from "@/features/order/presentation/ui/SalesHeaderScreen";
 import { ActivityLogScreen } from "@/features/activity-log/presentation";
 import UpdateUserPage from "@/features/user/presentation/ui/UpdateUserPage";
-import { AreaListPage, AreaPage, CreateAreaPage } from "@/features/area/presentation";
-import { SiteVisitPage, SiteVisitListPage } from "@/features/site-visit/presentation";
+import {
+  AreaListPage,
+  AreaPage,
+  CreateAreaPage,
+} from "@/features/area/presentation";
+import {
+  SiteVisitPage,
+  SiteVisitListPage,
+} from "@/features/site-visit/presentation";
 
 export const router = createBrowserRouter([
   {
@@ -185,11 +192,11 @@ export const router = createBrowserRouter([
                   {
                     path: routeName.salesHeader,
                     element: <SalesHeaderScreen />,
-                    errorElement: <NotFoundPage />,  
+                    errorElement: <NotFoundPage />,
                     children: [
                       {
                         index: true,
-                        element: <SalesHeaderListScreen />,  
+                        element: <SalesHeaderListScreen />,
                         errorElement: <NotFoundPage />,
                       },
                     ],

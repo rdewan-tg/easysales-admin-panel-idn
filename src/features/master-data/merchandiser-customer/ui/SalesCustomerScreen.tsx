@@ -8,7 +8,7 @@ import {
   SnackbarCloseReason,
   TextField,
 } from "@mui/material";
-import { useMerchandiserCustomerStore } from "..";
+
 import {
   ColumnDirective,
   ColumnsDirective,
@@ -29,6 +29,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SendOutlined } from "@mui/icons-material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import useMerchandiserCustomerStore from "../state/merchandiser-customer-store";
 
 const SalesCustomerScreen = () => {
   const [openErrorSnackbar, setOpenErrorSnackBar] = useState(false);
@@ -37,8 +38,7 @@ const SalesCustomerScreen = () => {
   const isLoading = useMerchandiserCustomerStore((state) => state.isLoading);
   const errorMessage = useMerchandiserCustomerStore((state) => state.error);
   const customers = useMerchandiserCustomerStore((state) => state.customers);
-  const getMerchandiserCustomers =
-    useMerchandiserCustomerStore.use.getMerchandiserCustomers();
+  
 
   const companies = useCompanyStore((state) => state.companies);
   const getCompanies = useCompanyStore.use.getCompanies();
@@ -53,9 +53,9 @@ const SalesCustomerScreen = () => {
   const { errors, isSubmitting, isValid } = formState;
 
   const onSubmit: SubmitHandler<GetCustomerForm> = async (
-    data: GetCustomerForm,
+    data: GetCustomerForm
   ) => {
-    await getMerchandiserCustomers(data.companyCode);
+   
   };
 
   // observe error state and display error message
@@ -79,7 +79,7 @@ const SalesCustomerScreen = () => {
 
   const handleErrorSnackbarClose = (
     _event?: React.SyntheticEvent | Event,
-    reason?: SnackbarCloseReason,
+    reason?: SnackbarCloseReason
   ) => {
     // do not close the snackbar if the reason is 'clickaway'
     if (reason === "clickaway") {
