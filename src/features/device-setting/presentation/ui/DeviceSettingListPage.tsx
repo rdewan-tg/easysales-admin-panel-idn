@@ -82,7 +82,7 @@ const DeviceSettingListPage = () => {
 
   const pageSettings: PageSettingsModel = { pageSize: 50 };
 
-  // fetch userswhen the component mounts
+  // fetch users when the component mounts
   useEffect(() => {
     async function fetchUsers() {
       if (users.length === 0) {
