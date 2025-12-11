@@ -12,8 +12,11 @@ import {
   IconButton,
 } from "@mui/material";
 import { AttachFile } from "@mui/icons-material";
+import useMerchandiserCustomerStore from "../../state/merchandiser-customer-store";
 
-const uploadMCustomer = () => {
+const UploadMCustomer = () => {
+  const uploadMCustomer = useMerchandiserCustomerStore.use.uploadMCustomer();
+
   const { handleSubmit, formState, watch, register, setValue } =
     useForm<UploadCustomerSchema>({
       resolver: zodResolver(uploadCustomerSchema),
@@ -28,7 +31,7 @@ const uploadMCustomer = () => {
   const selectedFile = watch("file");
 
   const onSubmit = async (data: UploadCustomerSchema) => {
-    console.log(data);
+    await uploadMCustomer(data);
   };
 
   return (
@@ -71,4 +74,4 @@ const uploadMCustomer = () => {
   );
 };
 
-export default uploadMCustomer;
+export default UploadMCustomer;
