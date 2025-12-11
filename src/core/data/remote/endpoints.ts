@@ -115,4 +115,4 @@ export const importAddressesFromAzureDbEndpoint: string =
 export const getSiteVisitListEndpoint: string = "/v1/api/site-visit/filter/by-company-and-date";
 //merchandiser customer
 export const importMCustomersEndpoint: string = "/v1/api/merchandiser-customers/upload-customer";
-export const getMCustomerEndpoint: string = "/v1/api/merchandiser-customers/find-by-company-id";
+export const getMCustomerEndpoint: string = "/v1/api/merchandiser-customers";

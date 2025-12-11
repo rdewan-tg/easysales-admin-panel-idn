@@ -27,7 +27,7 @@ export const importMerchandiserCustomersFromAzureDb = async () => {
 
 export const getMCustomer = async () => {
   const response = await axiosAdminInstance.get<MCustomerDto>(
-    getMCustomerEndpoint
+    `${getMCustomerEndpoint}/filter/company-id`
   );
   return response.data;
 };
