@@ -6,9 +6,8 @@ import {
   Slide,
   Snackbar,
   SnackbarCloseReason,
-  TextField,
 } from "@mui/material";
-import { useMerchandiserCustomerStore } from "..";
+
 import {
   ColumnDirective,
   ColumnsDirective,
@@ -23,12 +22,9 @@ import {
   Sort,
 } from "@syncfusion/ej2-react-grids";
 import { useEffect, useState } from "react";
-import { GetCustomerForm, getCustomerSchema } from "@/common/types";
+
 import { useCompanyStore } from "@/features/company/presentation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SendOutlined } from "@mui/icons-material";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import useMerchandiserCustomerStore from "../state/merchandiser-customer-store";
 
 const SalesCustomerScreen = () => {
   const [openErrorSnackbar, setOpenErrorSnackBar] = useState(false);
@@ -37,26 +33,8 @@ const SalesCustomerScreen = () => {
   const isLoading = useMerchandiserCustomerStore((state) => state.isLoading);
   const errorMessage = useMerchandiserCustomerStore((state) => state.error);
   const customers = useMerchandiserCustomerStore((state) => state.customers);
-  const getMerchandiserCustomers =
-    useMerchandiserCustomerStore.use.getMerchandiserCustomers();
-
-  const companies = useCompanyStore((state) => state.companies);
+ 
   const getCompanies = useCompanyStore.use.getCompanies();
-
-  const form = useForm<GetCustomerForm>({
-    resolver: zodResolver(getCustomerSchema),
-  });
-
-  // destructure form
-  const { handleSubmit, formState, control } = form;
-  // destructure formState
-  const { errors, isSubmitting, isValid } = formState;
-
-  const onSubmit: SubmitHandler<GetCustomerForm> = async (
-    data: GetCustomerForm,
-  ) => {
-    await getMerchandiserCustomers(data.companyCode);
-  };
 
   // observe error state and display error message
   useEffect(() => {
@@ -79,7 +57,7 @@ const SalesCustomerScreen = () => {
 
   const handleErrorSnackbarClose = (
     _event?: React.SyntheticEvent | Event,
-    reason?: SnackbarCloseReason,
+    reason?: SnackbarCloseReason
   ) => {
     // do not close the snackbar if the reason is 'clickaway'
     if (reason === "clickaway") {
@@ -104,70 +82,6 @@ const SalesCustomerScreen = () => {
           <CircularProgress color="inherit" />
         </Backdrop>
       ) : null}
-
-      <Box
-        component={"form"}
-        onSubmit={handleSubmit(onSubmit)}
-        sx={{
-          display: "block",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Controller
-          name="companyCode"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              id="company-code"
-              type="text"
-              size="small"
-              select
-              defaultValue=""
-              slotProps={{
-                select: {
-                  native: true,
-                },
-              }}
-              helperText={
-                errors.companyCode ? errors.companyCode.message : null
-              }
-              sx={{ width: "100%", maxWidth: 300 }}
-            >
-              <option aria-label="None" value="">
-                Select a company
-              </option>
-              {companies.map((option) => (
-                <option key={option.id} value={option.companyCode}>
-                  {option.companyCode}
-                </option>
-              ))}
-            </TextField>
-          )}
-        />
-
-        <LoadingButton
-          loading={isSubmitting}
-          loadingPosition="center"
-          startIcon={<SendOutlined />}
-          variant="contained"
-          disabled={!isValid || isSubmitting}
-          type="submit"
-          sx={{
-            width: "100%",
-            maxWidth: 180,
-            marginLeft: 2,
-            backgroundColor: "primary.main",
-            "&:hover": {
-              backgroundColor: "secondary.main",
-            },
-          }}
-        >
-          Get Customers
-        </LoadingButton>
-      </Box>
 
       <Box
         sx={{
